@@ -40,9 +40,14 @@ OutputMF.RightEdges=	{13,	25,	25};
 
 
 // Rules
-OutputMF.MuOuts[0]=std::max(qualityDegree_Poor,serviceDegree_Poor); 	// if quality is poor OR service is poor, tip is poor
-OutputMF.MuOuts[1]=serviceDegree_Average; 				// if service is average, tip is medium
-OutputMF.MuOuts[2]=std::max(qualityDegree_Good,serviceDegree_Good); 	// if quality is good OR service is good, tip is good
+//debugging
+std::cout << "About to do OutputMF.MuOuts calculations\n";
+
+OutputMF.MuOuts.push_back(std::max(qualityDegree_Poor,serviceDegree_Poor)); 	// if quality is poor OR service is poor, tip is poor
+OutputMF.MuOuts.push_back(serviceDegree_Average); 				// if service is average, tip is medium
+OutputMF.MuOuts.push_back(std::max(qualityDegree_Good,serviceDegree_Good)); 	// if quality is good OR service is good, tip is good
+
+std::cout << "Finished OutputMF.MuOuts calculations\n";
 
 // Defuzzification (CoG)
 float Crisp_Output=CenterOfGravDefuzz(OutputMF);

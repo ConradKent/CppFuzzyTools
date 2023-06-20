@@ -47,6 +47,10 @@ class TriangleOutMemFun {
 float CenterOfGravDefuzz(TriangleOutMemFun OutputFunction) {
 /* Center of gravity defuzzification, limited to using triangular output
 membership functions defined in the class "TriangleOutMemFun" */
+	
+
+	// debugging
+	std::cout << "Starting COG Defuzz\n";
 
 	int size = OutputFunction.NumberOfMFs;
 	float sumAreas;	// The sum of all the areas
@@ -57,7 +61,8 @@ membership functions defined in the class "TriangleOutMemFun" */
 		sumAreas=sumAreas+tempArea;
 		sumCOGs=sumCOGs+tempArea*OutputFunction.Centers[i];
   	};	// for
-  	
+  	std::cout << "sumAreas: " << sumAreas << "\n";
+	std::cout << "sumCOGs: " << sumCOGs << "\n";
   	return sumCOGs/sumAreas;	//crisp output using COG defuzz
 };	// float CenterOfAreaDefuzz
 
