@@ -11,7 +11,7 @@
 
 namespace ConradFuzzy{
 
-float TriangleInMemFun(float x, float a, float b, float c);
+float TriangleInMemFun(float x, std::vector<float> MemFunDefinition);
 
 class TriangleOutMemFun {
 /* Defining the triangular output membership function as a class */	
@@ -21,6 +21,7 @@ class TriangleOutMemFun {
 		std::vector<float> Centers;
 		std::vector<float> RightEdges;
 		std::vector<float> MuOuts;
+		int NumberOfMFs;		// The number of MFs
 }; 	// class TriangleOutMemFun
 
 float CenterOfGravDefuzz(TriangleOutMemFun OutputFunction);

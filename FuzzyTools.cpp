@@ -8,7 +8,10 @@
 
 namespace ConradFuzzy{
 
-float TriangleInMemFun(float x, float a, float b, float c) {
+float TriangleInMemFun(float x, std::vector<float> MemFunDefinition) {
+float a = MemFunDefinition[0];
+float b = MemFunDefinition[1];
+float c = MemFunDefinition[2];
 /* x is the crisp, a is the left point, b is the center point, c is the
 right point, mu is the degree of membership. */
 
@@ -33,6 +36,7 @@ class TriangleOutMemFun {
 		std::vector<float> Centers;	// The center points of each of the triangular output membership functions
 		std::vector<float> RightEdges;	// The right edge of each of the triangular output membership functions
 		std::vector<float> MuOuts;	// The degree of membership in each of the output membership functions
+		int NumberOfMFs;		// The number of MFs
 }; 	// class TriangleOutMemFun
 
 
@@ -44,7 +48,7 @@ float CenterOfGravDefuzz(TriangleOutMemFun OutputFunction) {
 /* Center of gravity defuzzification, limited to using triangular output
 membership functions defined in the class "TriangleOutMemFun" */
 
-	int size = OutputFunction.LeftEdges.size();	// The number of membership functions
+	int size = OutputFunction.NumberOfMFs;
 	float sumAreas;	// The sum of all the areas
 	float sumCOGs;		// The sum of all the areas multiplied by their centers
 	float tempArea;	// Temporary area for each iteration of the for loop
