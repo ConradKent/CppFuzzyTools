@@ -11,13 +11,13 @@ std::cout << "Enter quality (1-10)\n";
 std::cin >> quality;
 
 // Defining the left, right, and center of each triangular MF
-std::vector<float> serviceMF_Poor = {0,0,5};
+std::vector<float> serviceMF_Poor = {-0.01,0,5};
 std::vector<float> serviceMF_Average = {0,5,10};
-std::vector<float> serviceMF_Good = {5,10,10};
+std::vector<float> serviceMF_Good = {5,10,10.01};
 
-std::vector<float> qualityMF_Poor = {0,0,5};
+std::vector<float> qualityMF_Poor = {-0.01,0,5};
 std::vector<float> qualityMF_Average = { 0,5,10};
-std::vector<float> qualityMF_Good = {5,10,10};
+std::vector<float> qualityMF_Good = {5,10,10.01};
 
 //Fuzzifying to degree of membership in each MF
 float serviceDegree_Poor = ConradFuzzy::TriangleInMemFun(service,serviceMF_Poor);
@@ -47,7 +47,9 @@ OutputMF.MuOuts.push_back(std::max(qualityDegree_Poor,serviceDegree_Poor)); 	// 
 OutputMF.MuOuts.push_back(serviceDegree_Average); 				// if service is average, tip is medium
 OutputMF.MuOuts.push_back(std::max(qualityDegree_Good,serviceDegree_Good)); 	// if quality is good OR service is good, tip is good
 
-std::cout << "Finished OutputMF.MuOuts calculations\n";
+std::cout << "Low tip degree of membership " << OutputMF.MuOuts[0] << "\n";
+std::cout << "Medium tip degree of membership " << OutputMF.MuOuts[1] << "\n";
+std::cout << "High tip degree of membership " << OutputMF.MuOuts[2] << "\n";
 
 // Defuzzification (CoG)
 float Crisp_Output=CenterOfGravDefuzz(OutputMF);
